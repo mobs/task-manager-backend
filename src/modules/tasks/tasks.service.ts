@@ -1,4 +1,4 @@
-import { CreateTaskDto } from './tasks.types';
+import { CreateTaskDto, UpdateTaskDto } from './tasks.types';
 import { TasksRepository } from './tasks.repository';
 import { Prisma } from '@prisma/client';
 import { AppError } from '@/utils/app-error';

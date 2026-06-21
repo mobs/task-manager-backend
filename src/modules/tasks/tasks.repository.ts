@@ -1,11 +1,11 @@
 import { prisma } from '@/config/database';
-import { Prisma } from '@prisma/client';
+import { $Enums, Prisma } from '@prisma/client';
 
 interface CreateTaskRepositoryDto {
   title: string;
   description: string;
-  status: string;
-  priority: string;
+  status: $Enums.TaskStatus;
+  priority: $Enums.TaskPriority;
   dueDate: Date;
   userId: string;
 }

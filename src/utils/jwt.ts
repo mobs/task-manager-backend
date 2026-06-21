@@ -14,7 +14,7 @@ export function signToken(
     env.JWT_SECRET,
     {
       expiresIn:
-        env.JWT_EXPIRES_IN,
+        env.JWT_EXPIRES_IN as any,
     },
   );
 }

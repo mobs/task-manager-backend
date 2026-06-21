@@ -35,7 +35,10 @@ export class TasksController {
   });
 
   getTaskById = asyncHandler(async (req: Request, res: Response) => {
-    const task = await this.service.getTaskById(req.params.id, req.user!.id);
+    const taskId = Array.isArray(req.params.id)
+                  ? req.params.id[0]
+                  : req.params.id;
+    const task = await this.service.getTaskById(taskId, req.user!.id);
 
     return res.status(200).json({
       success: true,
@@ -44,8 +47,12 @@ export class TasksController {
   });
 
   updateTask = asyncHandler(async (req: Request, res: Response) => {
+    const taskId = Array.isArray(req.params.id)
+                  ? req.params.id[0]
+                  : req.params.id;
+
     const task = await this.service.updateTask(
-      req.params.id,
+      taskId,
       req.user!.id,
       req.body,
     );
@@ -58,7 +65,10 @@ export class TasksController {
   });
 
   deleteTask = asyncHandler(async (req: Request, res: Response) => {
-    await this.service.deleteTask(req.params.id, req.user!.id);
+    const taskId = Array.isArray(req.params.id)
+                  ? req.params.id[0]
+                  : req.params.id;
+    await this.service.deleteTask(taskId, req.user!.id);
 
     return res.status(200).json({
       success: true,

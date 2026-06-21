@@ -5,14 +5,14 @@ import {
 } from 'express';
 
 import {
-  ZodAny,
+  ZodTypeAny,
   ZodError,
 } from 'zod';
 
 import { formatZodErrors } from '@/utils/validation-error';
 
 export function validateQuery(
-  schema: ZodAny,
+  schema: ZodTypeAny,
 ) {
   return (
     req: Request,

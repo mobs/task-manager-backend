@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const helmet_1 = __importDefault(require("helmet"));
+const routes_1 = __importDefault(require("./routes"));
+const cors_1 = require("./config/cors");
+const rate_limit_1 = require("./config/rate-limit");
+const logger_1 = require("./config/logger");
+const error_middleware_1 = require("./middlewares/error.middleware");
+const app = (0, express_1.default)();
+app.use((0, helmet_1.default)());
+app.use(cors_1.corsMiddleware);
+app.use(rate_limit_1.rateLimiter);
+app.use(logger_1.logger);
+app.use(express_1.default.json());
+app.use('/api', routes_1.default);
+app.use(error_middleware_1.errorMiddleware);
+exports.default = app;

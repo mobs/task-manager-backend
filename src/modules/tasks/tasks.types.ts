@@ -12,7 +12,7 @@ export interface UpdateTaskDto {
   title?: string;
   description?: string;
   status?:$Enums.TaskStatus;
-  priority?: $Enums.TaskStatus;
+  priority?: $Enums.TaskPriority;
   dueDate?: string;
 }
 
